@@ -54,7 +54,7 @@ router.delete('/:id', verify ,async(req, res) => {
 
 //get
 
-router.get('/:id', verify ,async(req, res) => {
+router.get('/find/:id', verify ,async(req, res) => {
     try {
         const movie = await MovieModel.findById(req.params.id);
         res.status(200).json(movie);
@@ -68,7 +68,7 @@ router.get('/:id', verify ,async(req, res) => {
 router.get('/', verify ,async(req, res) => {
     try {
         const movies = await MovieModel.find();
-        res.status(200).json(movies);
+        res.status(200).json(movies.reverse());
     } catch (error) {
         res.status(500).json(error);
     }
@@ -96,12 +96,5 @@ router.get('/random', verify ,async(req, res) => {
         res.status(500).json(error);
     }
 });
-
-
-
-
-
-
-
 
 export default router;
